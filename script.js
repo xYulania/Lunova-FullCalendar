@@ -1,21 +1,24 @@
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth'
-    });
-    calendar.render();
-});
-
-  document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'multiMonthYear',
         dateClick: function(info) {
-            alert('Clicked on: ' + info.dateStr);
-            alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-            alert('Current view: ' + info.view.type);
-            // change the day's background color just for fun
-            info.dayEl.style.backgroundColor = 'red';
+        alert('Date: ' + info.dateStr);
+
+        info.dayEl.style.backgroundColor = 'red';
+      },
+        // initialView: 'listWeek',
+        headerToolbar: {
+            center: 'dayGridMonth,timeGridFourDay' // buttons for switching between views
+          },
+          views: {
+            timeGridFourDay: {
+              type: 'timeGrid',
+              duration: { days: 4 },
+              buttonText: '4 day'
+            }
           }
+        
     });
     calendar.render();
 });
